@@ -5,9 +5,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Activity', {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     name: {
       type: DataTypes.STRING,
@@ -22,7 +23,7 @@ module.exports = (sequelize) => {
         }
     },
     duracion: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.TIME,
         allowNull: false
     },
     temporada: {

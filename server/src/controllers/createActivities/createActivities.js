@@ -1,36 +1,34 @@
-const { Activity, Country } = require('../../db');
+const { Activity, Country } = require('../../db')
 
 const createActivities = async (req, res) => {
-    try {
-        const { id, name, dificultad, duracion, temporada, countries } = req.body;
 
-        // Crea la actividad en la base de datos
-        const activity = await Activity.create({
-            id,
-            name,
-            dificultad,
-            duracion,
-            temporada,
-        });
+  try {
+    const { name, dificultad, duracion, temporada, countries } = req.body;
 
-        // Relaciona la actividad con los países seleccionados
-        if (countries && countries.length > 0) {
-            const selectedCountries = await Country.findAll({
-                where: {
-                    id: countries, 
-                },
-            });
-            // establezco la relación entre la actividad y los países que seleccione
-            await activity.setCountries(selectedCountries);
+    // Crea la actividad en la base de datos
+    const createdActivity = await Activity.create({
+      name,
+      dificultad,
+      duracion,
+      temporada,
+    });
+
+    // Asocia la actividad a los países indicados
+    if (countries && countries.length > 0) {
+      for (const countryId of countries) {
+        const country = await Country.findByPk(countryId);
+        if (country) {
+          await createdActivity.addCountry(country);
         }
-
-        res.status(201).json(activity);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Se produjo un error al crear la actividad.' });
+      }
     }
+
+    res.status(201).json(createdActivity);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
 };
 
 module.exports = {
-    createActivities
+  createActivities
 }
