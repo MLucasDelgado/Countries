@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.fondo {
+    background-image: url('../../components/image/pexels-vlada-karpovich-7368277.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    min-height: 100vh;
+}
+
+.boton{
+    opacity: 0.7;
+    margin-top: 0.5em;
+}
+
+h1, h3{
+    text-align: center;
+    color: rgb(26, 29, 58);
+    padding-bottom: 0.4em;
+}
