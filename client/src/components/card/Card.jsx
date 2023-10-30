@@ -1,13 +1,14 @@
-const Card = ({ name, flags, continents, capital, subregion, area, population  }) => {
+import { Link } from "react-router-dom";
+
+const Card = ({ id, name, flags, continents, population}) => {
     return (
         <div>
+            <Link to={`/detail/${id}`}>
             <img src={flags} alt={name} />
             <h3>Nombre: {name}</h3>
             <h4>Continente: {continents}</h4>
-            {/* <h3>Capital: {capital}</h3>
-            <h4>Subregion: {subregion}</h4>
-            <h5>Area: {area}</h5>
-            <h6>Poblacion: {population}</h6> */}
+            <h4>Population: {population}</h4>
+            </Link>
         </div>
     );
 }

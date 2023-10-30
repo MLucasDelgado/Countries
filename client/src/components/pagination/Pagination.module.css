@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .button {
+    font-size: 20px; /* Ajusta el tamaño deseado de las flechas */
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .text {
+    margin: 0 10px; /* Ajusta el espacio entre el texto y las flechas */
+    font-size: 18px; /* Ajusta el tamaño del texto de la página */
+  }
