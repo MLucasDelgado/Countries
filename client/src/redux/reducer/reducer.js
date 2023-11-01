@@ -1,13 +1,20 @@
 import {
     GET_COUNTRIES,
     SEARCH_COUNTRY,
+    COUNTRIES_BY_ID,
+    CLEAN_DETAIL,
     ORDER_COUNTRIES,
-    ORDER_POPULATION
+    ORDER_POPULATION,
+    ORDER_BY_CONTINENTS,
+    GET_ACTIVITY,
+    FILTER_ACTIVITY
 } from "../actions-type/actions-type"
 
 const initialState = {
     originalCountries: [],
     allCountries: [],
+    activities: [],
+    detail: {}
 }
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +32,18 @@ const reducer = (state = initialState, action) => {
                 allCountries: action.payload, // Actualizo la lista actual con los resultados de la búsqueda
             }
 
+        case COUNTRIES_BY_ID:
+            return {
+                ...state,
+                detail: action.payload
+            }
+
+        case CLEAN_DETAIL:
+            return {
+                ...state,
+                detail: action.payload
+            }
+
         case ORDER_COUNTRIES:
             if (action.payload === 'Ascendente') {
                 return {
@@ -37,7 +56,7 @@ const reducer = (state = initialState, action) => {
                     ...state,
                     allCountries: [...state.allCountries].sort((country1, country2) => country2.name.localeCompare(country1.name))
                 }
-            } else if (action.payload === 'Orden') {
+            } else if (action.payload === 'alphabetically') {
                 return {
                     ...state,
                     allCountries: state.originalCountries,
@@ -62,6 +81,44 @@ const reducer = (state = initialState, action) => {
                 };
             }
 
+        case ORDER_BY_CONTINENTS:
+            const selectedContinent = action.payload;
+            let filteredCountries = [];
+
+            if (selectedContinent === "All") {
+                return {
+                    ...state,
+                    allCountries: state.originalCountries,
+                };
+            } else {
+                filteredCountries = state.originalCountries.filter(country => country.continents === selectedContinent);
+                return {
+                    ...state,
+                    allCountries: filteredCountries,
+                };
+            }
+
+        case GET_ACTIVITY:
+            return {
+                ...state,
+                activities: action.payload
+            }
+
+        case FILTER_ACTIVITY:
+            // console.log(state.activities)
+            let paises = []
+            const filteredActivity = state.activities.filter((activity) => {
+                if (activity.name === action.payload) {
+                    const countries = activity.Countries.map((country) => paises.push(country))
+                    // console.log(countries);
+                    return activity.Countries
+                }
+                return
+            })
+            return {
+                ...state,
+                allCountries: paises,
+            }
         default:
             return {
                 ...state,

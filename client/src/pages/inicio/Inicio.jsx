@@ -9,7 +9,7 @@ const Inicio = () => {
             <h3>Conoce acerca de los paises de tus sueños</h3>
             </section>
             <nav>
-                <Button link={'/home'} text={'Inicio'} className={style.boton} />
+                <Button link={'/home'} text={'Home'} className={style.boton} />
             </nav>
         </div>
     )

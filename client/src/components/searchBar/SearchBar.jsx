@@ -7,8 +7,7 @@ const SearchBar = ({onSearch}) => {
         const newName = event.target.value;
         setName(newName);
         // Realiza la búsqueda en tiempo real
-            onSearch(newName)
-        
+            onSearch(newName) 
     }
 
     return (

@@ -3,6 +3,7 @@ import Inicio from './pages/inicio/Inicio'
 import HomePage from './pages/home/Home'
 import Nav from './components/nav/Nav'
 import Detail from './pages/detail/Detail'
+import FormActivity from './pages/formActivity/FormActivity'
 import { searchCountry } from './redux/actions/actions'
 import './App.css'
 
@@ -14,7 +15,7 @@ const App = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const onSearch = async(newname) => {
+  const onSearch = (newname) => {
     try{
       dispatch(searchCountry(newname))
     } catch{
@@ -24,11 +25,12 @@ const App = () => {
   
   return (
     <div>
-      {location.pathname !== '/' ? <Nav onSearch={onSearch} /> : ''}
+      {location.pathname !== '/' ? <Nav /> : ''}
       <Routes>
         <Route path='/' element={<Inicio />}/>
-        <Route path='/home' element={<HomePage />}/>
+        <Route path='/home' element={<HomePage onSearch={onSearch} />}/>
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path='/create-activities' element={<FormActivity />} />
       </Routes>
     </div>
   )

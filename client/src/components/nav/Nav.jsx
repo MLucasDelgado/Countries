@@ -1,14 +1,13 @@
 import Button from "../button/button";
-import SearchBar from "../searchBar/SearchBar";
 import style from './Nav.module.css'
 
-const Nav = ({onSearch}) => {
+const Nav = () => {
     return (
         <div className={style.fondo}>
             <nav>
-            <Button link={'/home'} text='Home' />
-                <SearchBar onSearch={onSearch} />
-                <Button link={'/activities'} text='Nueva Actividad' />
+                <Button link={'/'} text='Start' />
+                <Button link={'/home'} text='Home' />
+                <Button link={'/create-activities'} text='New Activity' />
             </nav>
         </div>
     )

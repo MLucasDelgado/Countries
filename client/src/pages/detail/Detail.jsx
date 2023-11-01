@@ -1,38 +1,55 @@
-import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import {useEffect } from "react";
+import { useParams} from 'react-router-dom';
+import { countriesById, cleanDetail } from "../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Detail = () => {
     const { id } = useParams()
+    const dispatch = useDispatch();
 
-    const [country, setCountry] = useState({})
+    const detail = useSelector(state => state.detail);
+    const activities = useSelector(state => state.activities);
 
     useEffect(() => {
-        axios(`http://localhost:3001/countries/${id}`)
-        .then(({ data }) => {
-            if(data.name){
-                setCountry(data)
-            } else {
-                alert ('There are no countries with that ID')
-            }
-        })
-        .catch((error) => {
-            throw Error(error.message)
-        })
-        //Se desmonta el estado para ahorro de recursos y no quede sobre cargado.
+        dispatch(countriesById(id));
         
-    }, [id]) // El cilo de dependecia del array es de update, se actualiza
+        return () => {
+            dispatch(cleanDetail())
+        }
+    }, [id]);
+
+
+    const activityForCurrentCountry = activities.find(activity => {
+        return activity.Countries.some(country => country.id === id);
+    });
     
     return (
         <div>
-            <h2>Name: {country?.name}</h2>
-            <h4>ID: {country?.id}</h4>
-            <h4>Continent: {country?.continents}</h4>
-            <h4>Capital: {country?.capital}</h4>
-            <h4>Subregion: {country?.subregion}</h4>
-            <h4>Area: {country?.area}</h4>
-            <h4>Population: {country?.population}</h4>
-            <img src={country?.flags} alt={country?.id} />
+            <div>
+                <h2>Name: {detail?.name}</h2>
+                <h4>ID: {detail?.id}</h4>
+                <h4>Continent: {detail?.continents}</h4>
+                <h4>Capital: {detail?.capital}</h4>
+                <h4>Subregion: {detail?.subregion}</h4>
+                <h4>Area: {detail?.area}</h4>
+                <h4>Population: {detail?.population}</h4>
+                <img src={detail?.flags} alt={detail?.id} />
+            </div>
+
+            <div>
+                
+                {activityForCurrentCountry ? (
+                    <div>
+                        <h2>Activity</h2>
+                        <h4>Name: {activityForCurrentCountry.name}</h4>
+                        <h4>Difficulty: {activityForCurrentCountry.difficulty}</h4>
+                        <h4>Duration: {activityForCurrentCountry.duration}</h4>
+                        <h4>Season: {activityForCurrentCountry.season}</h4>
+                    </div>
+                ) : (
+                    <p></p>
+                )}
+            </div>
         </div>
     )
 }
