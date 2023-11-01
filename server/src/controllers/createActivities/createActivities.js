@@ -3,14 +3,16 @@ const { Activity, Country } = require('../../db')
 const createActivities = async (req, res) => {
 
   try {
-    const { name, dificultad, duracion, temporada, countries } = req.body;
-
+    const { name, difficulty, duration, season, countries } = req.body;
+    if(!name || !difficulty || !duration || !season || !countries){
+      return res.status(404).send('Faltan datos')
+    }
     // Crea la actividad en la base de datos
     const createdActivity = await Activity.create({
       name,
-      dificultad,
-      duracion,
-      temporada,
+      difficulty,
+      duration,
+      season,
     });
 
     // Asocia la actividad a los países indicados
