@@ -1,13 +1,18 @@
 .container {
     display: flex;
     align-items: center;
+    border-radius: 50%;
   }
   
   .button {
     font-size: 20px; /* Ajusta el tamaño deseado de las flechas */
-    background: none;
+    background-color: black;
+    padding: .4em 1em;
     border: none;
+    border-radius: 40%;
     cursor: pointer;
+    color: white;
+
   }
   
   .text {

@@ -1,0 +1,14 @@
+.busqueda {
+    width: 40%;
+}
+
+.input{
+    width: 100%;
+    padding: 0.2em 0em;
+    border-radius: 2em 2em;
+    border: 1px solid gray;
+}
+
+::placeholder{
+    text-align: center;
+}

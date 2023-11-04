@@ -13,8 +13,8 @@ import { GET_COUNTRIES,
 import axios from 'axios'
 
 export const getCountries = () => {
-    try{
-        return async(dispatch) => {
+    return async(dispatch) => {
+        try{
             const response = await axios.get('http://localhost:3001/countries')
             const data = response.data;
 
@@ -22,15 +22,15 @@ export const getCountries = () => {
                 type: GET_COUNTRIES,
                 payload: data
             })
+        } catch(error){
+            throw Error(error.message)
         }
-    }catch(error){
-        throw Error(error.message)
     }
 }
 
 export const searchCountry = (newName) => {
+    return async (dispatch, getState) => {
     try {
-        return async (dispatch, getState) => {
             if (newName.trim() === '') {
                 // Si el valor de búsqueda está vacío, restaura la lista original
                 const originalCountries = getState().originalCountries;
@@ -47,15 +47,16 @@ export const searchCountry = (newName) => {
                     payload: data
                 });
             }
+        } catch (error) {
+            alert(error.response.data.message)
+            throw Error(error.message);
         }
-    } catch (error) {
-        throw Error(error.message);
-    }
+    } 
 }
 
 export const countriesById = (id) => {
-    try{
-        return async(dispatch) => {
+    return async(dispatch) => {
+        try{
             const response = await axios.get(`http://localhost:3001/countries/${id}`)
             const data = response.data;
 
@@ -63,10 +64,10 @@ export const countriesById = (id) => {
                 type: COUNTRIES_BY_ID,
                 payload: data
             })
+        } catch(error){
+            throw Error(error.message)
         }
-    } catch(error){
-        throw Error(error.message)
-    }
+    } 
 }
 
 export const cleanDetail = () => {
@@ -98,8 +99,8 @@ export const orderContinents = (order) => {
 }
 
 export const postActivity = (input) => {
-    try{
-        return async(dispatch) => {
+    return async(dispatch) => {
+        try {
             const endpoint = 'http://localhost:3001/activities'
             const response = await axios.post(endpoint, input)
             const data = response.data
@@ -107,10 +108,10 @@ export const postActivity = (input) => {
                 type: POST_ACTIVITY,
                 payload: data
             })
+        } catch (error){
+            throw Error(error.message)
         }
-    } catch (error){
-        throw Error(error.message)
-    }
+    } 
 }
 
 export const getActivity = () => {

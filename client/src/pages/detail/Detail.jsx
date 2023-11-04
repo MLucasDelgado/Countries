@@ -1,7 +1,10 @@
+// Hooks
 import {useEffect } from "react";
 import { useParams} from 'react-router-dom';
-import { countriesById, cleanDetail } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
+
+// Components
+import { countriesById, cleanDetail } from "../../redux/actions/actions";
 
 const Detail = () => {
     const { id } = useParams()

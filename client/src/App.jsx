@@ -10,14 +10,18 @@ import './App.css'
 /* Hooks */
 import { useDispatch } from 'react-redux'
 import { Route, Routes, useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 const App = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
+  const [currentPage, setCurrentPage] = useState(1); // Estado compartido para Home
+
   const onSearch = (newname) => {
     try{
       dispatch(searchCountry(newname))
+      setCurrentPage(1); // Reinicia la página a la primera cuando se inicia una nueva búsqueda
     } catch{
       throw Error(error.message);
     }
@@ -25,10 +29,10 @@ const App = () => {
   
   return (
     <div>
-      {location.pathname !== '/' ? <Nav /> : ''}
+      {location.pathname !== '/' ? <Nav onSearch={onSearch} /> : ''}
       <Routes>
         <Route path='/' element={<Inicio />}/>
-        <Route path='/home' element={<HomePage onSearch={onSearch} />}/>
+        <Route path='/home' element={<HomePage currentPage={currentPage} setCurrentPage={setCurrentPage}/>}/>
         <Route path="/detail/:id" element={<Detail />} />
         <Route path='/create-activities' element={<FormActivity />} />
       </Routes>

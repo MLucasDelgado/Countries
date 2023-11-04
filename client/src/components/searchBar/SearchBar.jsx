@@ -1,22 +1,25 @@
 import { useState } from "react";
+import style from './SearchBar.module.css'
 
 const SearchBar = ({onSearch}) => {
     const [name, setName] = useState('');
 
+
     const handleChange = async (event) => {
         const newName = event.target.value;
         setName(newName);
-        // Realiza la búsqueda en tiempo real
-            onSearch(newName) 
-    }
+        onSearch(newName) 
 
+
+    }
+    
     return (
-        <div>
-            <input
+        <div className={style.busqueda}>
+            <input className={style.input}
                 type="search"
                 onChange={handleChange}
                 value={name}
-                placeholder="Ejemplo: Argentina"
+                placeholder="Search one country"
             />
         </div>
     );

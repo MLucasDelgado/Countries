@@ -1,3 +1,27 @@
-.fondo{
-    background-color: aqua;
+.fondo {
+    background-image: url('../image/paisaje.gif'); /* Escapa los espacios en blanco con %20 */
+    padding: 3em 0;
+    min-width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+  }
+
+.nav {
+    min-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.boton {
+    padding: .5em 2em;
+    border-radius: 2em 2em;
+    border: 1px solid gray;
+    transition: transform 0.3s
+}
+
+.boton:hover {
+    cursor: pointer;
+    transform: scale(1.06);
 }

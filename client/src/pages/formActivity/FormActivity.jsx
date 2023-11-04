@@ -1,14 +1,21 @@
+// Hooks
+import {Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { getCountries, getActivity, postActivity } from '../../redux/actions/actions'
+
+// components
+import { getCountries, postActivity } from '../../redux/actions/actions'
+import validation from './validation'
 
 
 
 const FormActivity = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const allCountries = useSelector((state) => state.allCountries)
 
-    const [error, setError] = useState({})
+    const [errors, setErrors] = useState({})
+    const [formularioEnviado, setFormularioEnviado] = useState(false); // Estado para rastrear si se ha enviado el formulario
 
     const [input, setInput] = useState({
         name: '',
@@ -18,9 +25,30 @@ const FormActivity = () => {
         countries: []
     })
 
+    const handleCreateActivity = (event) => {
+        event.preventDefault()
+        setFormularioEnviado(true); // Marco el formulario como enviado
+
+        const newErrors = validation(input);
+
+        if (Object.keys(newErrors).length > 0) {
+            // Si hay errores, configuro los errores
+            setErrors(newErrors);
+        } else {
+            // Si no hay errores, continúo con la creación de la actividad
+            dispatch(postActivity(input));
+            alert("Actividad creada correctamente");
+            navigate('/home')
+        }
+    };
+
+
     useEffect(() => {
         dispatch(getCountries())
     }, [])
+
+
+    // handlers
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -41,15 +69,11 @@ const FormActivity = () => {
         });
     };
 
-    const handleSubmit = () => {
-        dispatch(postActivity(input));
-        alert("Actividad Creada");
-    }
-
     return (
         <div>
-            <form onSubmit={(evento) => handleSubmit(evento)}>
+            <form onSubmit={(evento) => handleCreateActivity(evento)}>
                 <section>
+                    {formularioEnviado && errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
                     <label htmlFor="name">Name:</label>
                     <input
                         type="text"
@@ -61,6 +85,7 @@ const FormActivity = () => {
                 </section>
 
                 <section>
+                    {formularioEnviado && errors.difficulty && <p style={{ color: 'red' }}>{errors.difficulty}</p>}
                     <label htmlFor="1">Difficulty:</label>
 
                     <label htmlFor="1">1</label>
@@ -80,11 +105,13 @@ const FormActivity = () => {
                 </section>
 
                 <section>
+                    {formularioEnviado && errors.duration && <p style={{ color: 'red' }}>{errors.duration}</p>}
                     <label htmlFor="duration">Duration:</label>
                     <input type="time" name="duration" value={input.duration} onChange={handleChange} />
                 </section>
 
                 <section>
+                    {formularioEnviado && errors.season && <p style={{ color: 'red' }}>{errors.season}</p>}
                     <label>Season:</label>
 
                     <label htmlFor="Verano">Verano</label>
@@ -101,6 +128,7 @@ const FormActivity = () => {
                 </section>
 
                 <section>
+                {formularioEnviado && errors.countries && <p style={{ color: 'red' }}>{errors.countries}</p>}
                     <label >Countries:</label>
                     <select onChange={(evento) => handleSelect(evento)}>
                         <option value="name">Choose a country</option>
@@ -132,8 +160,9 @@ const FormActivity = () => {
                         })}
                     </div>
                 </section>
-
-                <button type="submit">Create Activity</button>
+                <Link to="/home" style={{ textDecoration: 'none' }}>
+                    <button onClick={handleCreateActivity} type="button">Create Activity</button>
+                </Link>   
             </form>
         </div>
     )
