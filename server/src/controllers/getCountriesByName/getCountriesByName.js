@@ -16,15 +16,13 @@ const getCountriesByName = async (req, res) => {
                 }
             }
         });
-        console.log(countries);
 
         if (countries.length === 0) {
-            return res.status(404).json({ message: 'No se encontraron países.' });
+            return res.status(404).json({ message: 'No se encontraron países con ese nombre.' });
         }
 
         res.status(200).json(countries);
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: error.message });
     }
 };

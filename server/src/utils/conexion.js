@@ -4,8 +4,8 @@ const URL = 'http://localhost:5000/countries'
 
 const getInformation = async () => {
     try{
-        const encontrarPaises = await Country.findAll()
-        if(encontrarPaises) return
+        // const encontrarPaises = await Country.findAll()
+        // if(encontrarPaises) return
         
         const response = await axios.get(URL)
     

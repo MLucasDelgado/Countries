@@ -31,8 +31,8 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // asi presento los modelos a la base de datos, y se generan las tablas
-// CountryModel(sequelize);
-// ActivityModel(sequelize)
+CountryModel(sequelize);
+ActivityModel(sequelize)
 
 const { Country, Activity } = sequelize.models;
 
