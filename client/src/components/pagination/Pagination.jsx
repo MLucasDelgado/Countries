@@ -11,7 +11,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                 &#8249; {/* Flecha izquierda */}
             </button>
             <span className={style.text}>
-                {currentPage} de {totalPages}
+                {currentPage} of {totalPages}
             </span>
             <button
                 onClick={() => onPageChange(currentPage + 1)}

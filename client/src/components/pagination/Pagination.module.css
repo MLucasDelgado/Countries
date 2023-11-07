@@ -12,10 +12,15 @@
     border-radius: 40%;
     cursor: pointer;
     color: white;
-
+    transition: transform 0.3s;
   }
   
+  .button:hover{
+    transform: scale(1.1);
+    box-shadow: 2px 2px white;
+  }
   .text {
     margin: 0 10px; /* Ajusta el espacio entre el texto y las flechas */
-    font-size: 18px; /* Ajusta el tamaño del texto de la página */
+    font-size: 20px; /* Ajusta el tamaño del texto de la página */
+    text-shadow: 2px 2px rgb(252, 248, 248);
   }

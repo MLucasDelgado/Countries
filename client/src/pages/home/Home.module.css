@@ -1,3 +1,15 @@
+.fondo{
+    background-image: url('../../components/image/Portada1.jpg');
+    min-width: 100%;
+    min-height: 70vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    border-bottom: 1px solid black;
+    padding-bottom: 2em;
+    image-rendering: pixelated;  
+}
+
 .container{
     display: flex;
     flex-wrap: wrap;
@@ -9,14 +21,14 @@
     display: flex;
     justify-content: center;
     padding: 1em 0;
-    margin: 1em 0;
 }
 
 .selects{
     display: flex;
     justify-content: space-evenly;
-    padding: 0.5em 0;
+    padding-bottom: 0.5em;
     background-color: rgb(38, 54, 54);
+    border-bottom: 2px solid white;
 }
 
 .select{

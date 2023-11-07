@@ -1,19 +1,28 @@
 .card{
     width: 25%;
-    background-color: aqua;
+    background-color: rgb(73, 70, 70);
     padding: 1em 0;
     border-radius: 2em 2em;
     transition: transform 0.3s;
+    opacity: 0.75;
+    text-decoration: none;
+    border: 2px solid white;
 }
 
 .card:hover {
     transform: scale(1.1);
+    box-shadow: 4px 4px black;
+}
+
+.text{
+    text-decoration: none;
 }
 
 .imagen{
     width: 30%;
     height: 70px;
     border-radius: 20%;
+    border: 2px solid white;
 }
 
 .container{
@@ -30,4 +39,13 @@ h4 {
     text-decoration: none;
     margin-top: 1em;
     list-style: none;
+    color: white;
+    font-size: 1.1em;
+    text-shadow: 2px 2px rgb(0, 0, 0);
+}
+
+h3{
+    color: white;
+    text-shadow: 2px 2px rgb(0, 0, 0);
+    font-size: 1.4em;
 }

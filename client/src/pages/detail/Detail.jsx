@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // Components
 import { countriesById, cleanDetail } from "../../redux/actions/actions";
+import style from './Detail.module.css'
 
 const Detail = () => {
     const { id } = useParams()
@@ -27,31 +28,33 @@ const Detail = () => {
     });
     
     return (
-        <div>
-            <div>
-                <h2>Name: {detail?.name}</h2>
-                <h4>ID: {detail?.id}</h4>
-                <h4>Continent: {detail?.continents}</h4>
-                <h4>Capital: {detail?.capital}</h4>
-                <h4>Subregion: {detail?.subregion}</h4>
-                <h4>Area: {detail?.area}</h4>
-                <h4>Population: {detail?.population}</h4>
-                <img src={detail?.flags} alt={detail?.id} />
-            </div>
+        <div className={style.fondo}>
+            <div className={style.contenedor}>
+                <div className={style.pais}>
+                    <h2>Name: {detail?.name}</h2>
+                    <h4>ID: {detail?.id}</h4>
+                    <h4>Continent: {detail?.continents}</h4>
+                    <h4>Capital: {detail?.capital}</h4>
+                    <h4>Subregion: {detail?.subregion}</h4>
+                    <h4>Area: {detail?.area}</h4>
+                    <h4>Population: {detail?.population}</h4>
+                    <img src={detail?.flags} alt={detail?.id} />
+                </div>
 
-            <div>
-                
-                {activityForCurrentCountry ? (
-                    <div>
-                        <h2>Activity</h2>
-                        <h4>Name: {activityForCurrentCountry.name}</h4>
-                        <h4>Difficulty: {activityForCurrentCountry.difficulty}</h4>
-                        <h4>Duration: {activityForCurrentCountry.duration}</h4>
-                        <h4>Season: {activityForCurrentCountry.season}</h4>
-                    </div>
-                ) : (
-                    <p></p>
-                )}
+                <div className={activityForCurrentCountry ? style.actividad : ''}>
+                    
+                    {activityForCurrentCountry ? (
+                        <div>
+                            <h2>Activity</h2>
+                            <h4>Name: {activityForCurrentCountry.name}</h4>
+                            <h4>Difficulty: {activityForCurrentCountry.difficulty}</h4>
+                            <h4>Duration: {activityForCurrentCountry.duration}</h4>
+                            <h4>Season: {activityForCurrentCountry.season}</h4>
+                        </div>
+                    ) : (
+                        <p></p>
+                    )}
+                </div>
             </div>
         </div>
     )

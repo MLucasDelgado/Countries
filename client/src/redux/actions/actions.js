@@ -109,7 +109,7 @@ export const postActivity = (input) => {
                 payload: data
             })
         } catch (error){
-            throw Error(error.message)
+            throw Error(error.response.data.message)
         }
     } 
 }

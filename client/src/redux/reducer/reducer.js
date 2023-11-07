@@ -15,26 +15,28 @@ const initialState = {
     allCountries: [],
     activities: [],
     detail: {},
-    filteredByNameCountries: []
 }
 
 let search = false;
-let filterContinents = false;
-let filterActivity = false 
+let filterContinents = '';
+let filterActivity = '' 
 
 const reducer = (state = initialState, action) => {
+   
+    const newCopyCountries = !search ? [...state.originalCountries] : search
     switch (action.type) {
         case GET_COUNTRIES:
             search = false
-            filterContinents = false
-            filterActivity = false
+            filterContinents = ''
+            filterActivity = ''
             return {
                 ...state,
-                allCountries: action.payload,
-                originalCountries: action.payload // Almaceno el estado original cuando se obtienen los datos
+                allCountries: action.payload.sort((country1, country2) => country1.name.localeCompare(country2.name)),
+                originalCountries: action.payload.sort((country1, country2) => country1.name.localeCompare(country2.name)) // Almaceno el estado original cuando se obtienen los datos
             }
 
         case SEARCH_COUNTRY:
+            search = action.payload
             return {
                 ...state,
                 allCountries: action.payload
@@ -96,86 +98,46 @@ const reducer = (state = initialState, action) => {
             }
 
         case ORDER_BY_CONTINENTS:
-            // const selectedContinent = action.payload;
-            // let filteredCountries = [];
-
-            // if (selectedContinent === "All") {
-            //     return {
-            //         ...state,
-            //         allCountries: state.originalCountries,
-            //     };
-            // } else {
-            //     filteredCountries = state.originalCountries.filter(country => country.continents === selectedContinent);
-            //     return {
-            //         ...state,
-            //         allCountries: filteredCountries,
-            //     };
-            // }
-            if(!filterActivity){
-                filterContinents = state.originalCountries.filter((country) => country.continents === action.payload)
+            
+            if (action.payload === 'All') {
+                filterContinents = "";
                 return {
                     ...state,
-                    allCountries: filterContinents
+                    allCountries: filterActivity.length ? newCopyCountries.filter(country => {
+                        return country.Activities?.some(activity => activity.name === filterActivity)
+                    }) : newCopyCountries
                 }
             }
-            if(filterActivity) {
-                const newCountry = filterActivity.filter((country) => country.continents === action.payload)
-                filterContinents = newCountry
-                return{
-                    ...state,
-                    allCountries: newCountry
-                }
-            } else {
-                const newCountry = state.originalCountries.filter((country) => country.continents === action.payload)
-                filterContinents = newCountry
-                return{
-                    ...state,
-                    allCountries: newCountry
-                }
+            filterContinents = action.payload
+            return {
+                ...state,
+                allCountries: filterActivity.length ? newCopyCountries.filter(country => {
+                    return (country.continents === action.payload && country.Activities?.some(activity => activity.name === filterActivity))
+                }) : newCopyCountries.filter(country => {
+                    return country.continents === action.payload
+                })
             }
 
         case FILTER_ACTIVITY:
-            // if (action.payload === 'actividad') {
-            //     return {
-            //         ...state,
-            //         allCountries: state.originalCountries,
-            //     };
-            // }
-
-            // let paises = [];
-            // const filteredActivity = state.activities.filter((activity) => {
-            //     if (activity.name === action.payload) {
-            //         const countries = activity.Countries.map((country) => paises.push(country));
-            //         return activity.Countries;
-            //     }
-            //     return;
-            // });
-
-            // return {
-            //     ...state,
-            //     allCountries: paises,
-            // };
-            if(!filterContinents) {
-               
-                let paises = []
-                const filteredActivity = state.activities.filter((activity) => {
-                        if (activity.name === action.payload) {
-                            const countries = activity.Countries.map((country) => paises.push(country));
-                            return activity.Countries;
-                        }
-                        return;
-                    });
-                    filterActivity = paises
-                    console.log(filterActivity);
-                    return {
-                        ...state,
-                        allCountries: filterActivity
-                    }
-            } else {
+            
+            if (action.payload === 'actividad') {
+                filterActivity = "";
                 return {
                     ...state,
-                    allCountries: state.originalCountries
+                    allCountries: filterContinents ? newCopyCountries.filter(country => {
+                        return (country.continents === filterContinents)
+                    }) : newCopyCountries
                 }
+            }
+            filterActivity = action.payload;
+            return {
+                ...state,
+                allCountries: filterContinents.length ? newCopyCountries.filter(country => {
+                    
+                    return (country.continents === filterContinents && country.Activities?.some(activity => activity.name === action.payload))
+                }) : newCopyCountries.filter(country => {
+                    return country.Activities?.some(activity => activity.name === action.payload)
+                })
             }
 
         default:

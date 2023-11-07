@@ -16,12 +16,12 @@ const App = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const [currentPage, setCurrentPage] = useState(1); // Estado compartido para Home
+  const [currentPage, setCurrentPage] = useState(1);
 
   const onSearch = (newname) => {
     try{
       dispatch(searchCountry(newname))
-      setCurrentPage(1); // Reinicia la página a la primera cuando se inicia una nueva búsqueda
+      setCurrentPage(1); // Reinicio la página cuando se inicia una nueva búsqueda
     } catch{
       throw Error(error.message);
     }

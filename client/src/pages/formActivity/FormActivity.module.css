@@ -1,0 +1,142 @@
+.fondo{
+    background-image: url('../../components/image/Portada1.jpg');
+    min-width: 100%;
+    min-height: 45vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    border-bottom: 1px solid black;
+    padding-bottom: 2em;
+    image-rendering: pixelated; 
+    padding: 5em 0; 
+}
+
+.formulario{
+    width: 40%;
+    background-color: rgb(29, 29, 29);
+    padding: 2em 2em;
+    margin-inline: auto;
+    padding: 5em auto;
+    border-radius: 2em 2em;
+    
+    border: 1px solid gray;
+    box-shadow: 4px 4px black;
+}
+
+.input{
+    margin: 0.4em 0;
+    width: 100%;
+    margin-bottom: 1em;
+    border-radius: 2em 2em;
+    border: 2px solid gray;
+    padding: 0.14em 0;
+}
+
+.texto {
+    font-size: 1.2em;
+    margin: 1em 0;
+    color: white;
+    text-shadow: 2px 1px black;
+}
+
+.label{
+    margin-right: 1em;
+    font-size: 1.1em;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.radio{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.numeros{
+    transition: transform 0.3s;
+}
+
+.numeros:hover{
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.opciones{
+    background-color: rgb(165, 13, 13);
+    padding: 0.2em 0.5em;
+    margin: 0.5em;
+    width: 40%;
+    color: white;
+    font-size: 1.1em;
+}
+
+.contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.espacio{
+    margin-bottom: 1em;
+}
+
+.boton{
+    padding: 0.6em 1em;
+    margin: 2em auto;
+    border-radius: 2em 2em;
+    width: 100%;
+    border: 1px solid gray;
+    color: black;
+}
+
+.boton:hover{
+    cursor: pointer;
+    background-color: rgb(81, 109, 109);
+}
+
+.x{
+    margin-right: 1em;
+    padding: .2em .5em;
+    background-color: red;
+    color: white;
+    font-size: 1em;
+}
+
+.x:hover{
+    cursor: pointer;
+}
+
+.parrafo{
+    text-align: center;
+    background-color: rgb(37, 20, 100);
+    color: white;
+    width: 80%;
+    border-radius: 2em 2em;
+    margin-inline: auto;
+    padding: 0.2em 0;
+    animation: cambioColor 4s infinite;
+    border: 1px solid gray;
+}
+
+@keyframes cambioColor {
+    0% {
+        color: white;
+    }
+    25% {
+        color: rgb(48, 104, 85);
+    }
+    50% {
+        color: yellow;
+    }
+    75% {
+        color: green;
+    }
+    100% {
+        color: white;
+    }
+}

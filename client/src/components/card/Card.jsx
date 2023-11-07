@@ -4,7 +4,7 @@ import style from './Card.module.css'
 const Card = ({ id, name, flags, continents, population}) => {
     return (
         <div className={style.card}>
-            <Link to={`/detail/${id}`}>
+            <Link className={style.text} to={`/detail/${id}`}>
             <div className={style.container}>
             <img className={style.imagen} src={flags} alt={name} />
             <h3>{name}</h3>

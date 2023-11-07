@@ -1,0 +1,51 @@
+.fondo{
+    background-image: url('../../components/image/Portada1.jpg');
+    min-width: 100%;
+    min-height: 55vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    border-bottom: 1px solid black;
+    padding-bottom: 2em;
+    image-rendering: pixelated;  
+}
+
+.contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.pais, .actividad{
+    width: 30%;
+    background-color: rgb(73, 70, 70);
+    padding: 1em 0;
+    opacity: 0.8;
+    border-radius: 2em 2em;
+    transition: transform 0.3s;
+    text-decoration: none;
+    border: 2px solid white;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px rgb(95, 145, 219);
+    margin-top: 5em;
+    font-size: 1.2em;
+    
+}
+
+.pais:hover, .actividad:hover{
+    transform: scale(1.1);
+    box-shadow: 4px 4px black;
+}
+
+img{
+    border-radius: 2em 2em;
+    border: 2px solid white;
+    margin: 1em 1em;
+}
+
+
+

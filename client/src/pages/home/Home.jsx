@@ -9,7 +9,7 @@ import {
   getActivity,
   filterActivity
 } from "../../redux/actions/actions";
-import Pagination from "../../components/pagination/pagination";
+import Pagination from "../../components/pagination/Pagination"
 
 // Hooks
 import { useDispatch, useSelector } from "react-redux";
@@ -62,7 +62,7 @@ const HomePage = ({ currentPage, setCurrentPage }) => {
     setCurrentPage(1);
   }
   return (
-    <div>
+    <div className={style.fondo}>
       <div className={style.selects}>
         <select className={style.select} onChange={handleOrder} name="Orden">
           <option value="alphabetically">Alphabetically</option>
@@ -121,6 +121,7 @@ const HomePage = ({ currentPage, setCurrentPage }) => {
         ))}
       </div>
     </div>
+
   );
 }
 

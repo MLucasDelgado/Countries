@@ -17,13 +17,25 @@
     min-height: 100vh;
 }
 
-.boton{
-    opacity: 0.7;
-    margin-top: 0.5em;
+.boton {
+    padding: .5em 2em;
+    border-radius: 2em 2em;
+    border: 1px solid black;
+    transition: transform 0.3s;
+    background-color: bisque;
 }
 
-h1, h3{
+.boton:hover {
+    cursor: pointer;
+    transform: scale(1.06);
+    background-color: rgb(151, 128, 100);
+    border: 1px solid black;
+}
+
+.texto{
     text-align: center;
-    color: rgb(26, 29, 58);
+    color: black;
     padding-bottom: 0.4em;
+    text-shadow: 1px 1px white;
+    font-size: 1.5em;
 }
