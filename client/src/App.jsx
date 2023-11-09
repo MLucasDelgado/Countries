@@ -17,6 +17,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
+  
 
   const onSearch = (newname) => {
     try{

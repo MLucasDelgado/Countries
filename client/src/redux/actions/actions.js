@@ -39,7 +39,6 @@ export const searchCountry = (newName) => {
                     payload: originalCountries
                 });
             } else {
-                // Realiza la búsqueda en función de newName
                 const response = await axios.get(`http://localhost:3001/countries/name?name=${newName}`)
                 const data = response.data;
                 return dispatch({
@@ -133,5 +132,16 @@ export const filterActivity = (order) => {
     return {
         type: FILTER_ACTIVITY,
         payload: order
+    }
+}
+
+export const deleteActivity = (activityId) => {
+    return async () => {
+        try{
+            const id = activityId
+            const response = await axios.delete(`http://localhost:3001/activities/${id}`)
+        } catch(error) {
+
+        }
     }
 }

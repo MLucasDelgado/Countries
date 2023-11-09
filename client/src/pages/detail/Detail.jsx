@@ -1,11 +1,13 @@
 // Hooks
-import {useEffect } from "react";
-import { useParams} from 'react-router-dom';
+import { useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // Components
-import { countriesById, cleanDetail } from "../../redux/actions/actions";
+import { countriesById, cleanDetail, getActivity } from "../../redux/actions/actions";
 import style from './Detail.module.css'
+import CardActivity from "../../components/cardActivity/CardActivity";
 
 const Detail = () => {
     const { id } = useParams()
@@ -16,17 +18,20 @@ const Detail = () => {
 
     useEffect(() => {
         dispatch(countriesById(id));
-        
+        dispatch(getActivity())
         return () => {
             dispatch(cleanDetail())
         }
-    }, [id]);
-
+    }, []);
 
     const activityForCurrentCountry = activities.find(activity => {
         return activity.Countries.some(country => country.id === id);
     });
-    
+
+    const actividad = activities.filter((activity) => {
+        return activity.Countries.some(country => country.id === id);
+    })
+    //  console.log(typeof [actividad]);
     return (
         <div className={style.fondo}>
             <div className={style.contenedor}>
@@ -41,19 +46,24 @@ const Detail = () => {
                     <img src={detail?.flags} alt={detail?.id} />
                 </div>
 
-                <div className={activityForCurrentCountry ? style.actividad : ''}>
-                    
-                    {activityForCurrentCountry ? (
-                        <div>
-                            <h2>Activity</h2>
-                            <h4>Name: {activityForCurrentCountry.name}</h4>
-                            <h4>Difficulty: {activityForCurrentCountry.difficulty}</h4>
-                            <h4>Duration: {activityForCurrentCountry.duration}</h4>
-                            <h4>Season: {activityForCurrentCountry.season}</h4>
-                        </div>
-                    ) : (
-                        <p></p>
-                    )}
+                
+                <div className={style.container}>
+                    {actividad.length ? actividad.map((activity) => {
+                        return (
+                            <div className={activityForCurrentCountry ? style.actividad : ''}>
+                                <CardActivity 
+                                    id={activity.id}
+                                    key={activity.id}
+                                    name={activity.name}
+                                    difficulty={activity.difficulty}
+                                    duration={activity.duration}
+                                    season={activity.season}
+                                    />
+                            </div>
+                        )
+                    }) : (
+                        <p> No hay actividades creadas en un pais que corresponda a este continente</p>
+                        )}
                 </div>
             </div>
         </div>

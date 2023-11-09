@@ -45,3 +45,22 @@
     cursor: pointer;
     transform: scale(1.06);
 }
+
+.parrafo{
+    box-shadow: 5px 5px black;
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10em;
+    width: 60%;
+    margin-inline: auto;
+    padding: 2em 0;
+    border-radius: 2em 2em;
+}
+
+p{
+    font-size: 1.1em;
+}

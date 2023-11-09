@@ -31,8 +31,8 @@ const reducer = (state = initialState, action) => {
             filterActivity = ''
             return {
                 ...state,
-                allCountries: action.payload.sort((country1, country2) => country1.name.localeCompare(country2.name)),
-                originalCountries: action.payload.sort((country1, country2) => country1.name.localeCompare(country2.name)) // Almaceno el estado original cuando se obtienen los datos
+                allCountries: action.payload,
+                originalCountries: action.payload 
             }
 
         case SEARCH_COUNTRY:
@@ -59,7 +59,7 @@ const reducer = (state = initialState, action) => {
                 return {
                     ...state,
                     allCountries: [...state.allCountries].sort((country1, country2) => country1.name.localeCompare(country2.name))
-                    // El método localeCompare() se utiliza para comparar dos cadenas de texto y determinar su orden relativo
+                    // con el localeCompare() comparo dos cadenas de texto y determinar su orden.
                 }
             } else if (action.payload === 'Descendente') {
                 return {

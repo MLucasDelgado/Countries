@@ -1,0 +1,14 @@
+.boton {
+    padding: .5em 2em;
+    border-radius: 2em 2em;
+    border: 1px solid black;
+    transition: transform 0.3s;
+    background-color: rgb(109, 147, 218);
+}
+
+.boton:hover {
+    cursor: pointer;
+    transform: scale(1.06);
+    background-color: rgb(151, 128, 100);
+    border: 1px solid black;
+}

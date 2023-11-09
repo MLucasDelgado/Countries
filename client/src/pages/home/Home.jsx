@@ -97,13 +97,13 @@ const HomePage = ({ currentPage, setCurrentPage }) => {
         </select>
       </div>
 
-      <div className={style.paginas}>
+      {allCountries.length ? <div className={style.paginas}>
         <Pagination
           currentPage={currentPage}
           totalPages={Math.ceil(allCountries.length / countriesPerPage)}
           onPageChange={paginate}
         />
-      </div>
+      </div> : <div className={style.parrafo}><p> No existen coincidencias entre los filtros aplicados.</p></div>}
 
       <div className={style.container}>
         {currentCountries.map((country) => (

@@ -19,7 +19,7 @@
     width: 100%;
 }
 
-.pais, .actividad{
+.pais{
     width: 30%;
     background-color: rgb(73, 70, 70);
     padding: 1em 0;
@@ -33,7 +33,22 @@
     text-shadow: 2px 2px rgb(95, 145, 219);
     margin-top: 5em;
     font-size: 1.2em;
-    
+}
+
+.actividad{
+    width: 60%;
+    background-color: rgb(73, 70, 70);
+    padding: 1em 0;
+    opacity: 0.8;
+    border-radius: 2em 2em;
+    transition: transform 0.3s;
+    text-decoration: none;
+    border: 2px solid white;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px rgb(95, 145, 219);
+    margin-top: 5em;
+    font-size: 1.2em;
 }
 
 .pais:hover, .actividad:hover{
@@ -45,6 +60,18 @@ img{
     border-radius: 2em 2em;
     border: 2px solid white;
     margin: 1em 1em;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+.parrafo{
+    background-color: aqua;
+    color: white;
 }
 
 

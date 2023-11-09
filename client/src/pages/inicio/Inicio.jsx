@@ -5,7 +5,7 @@ const Inicio = () => {
     return(
         <div className={style.fondo}>
             <section>
-            <h1 className={style.texto}>Country</h1>
+            <h1 className={style.texto}>Countries</h1>
             <h3 className={style.texto}>Conoce acerca de los paises de tus sueños</h3>
             </section>
             <nav>
