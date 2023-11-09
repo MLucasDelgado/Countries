@@ -30,13 +30,12 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// asi presento los modelos a la base de datos, y se generan las tablas
+
 CountryModel(sequelize);
 ActivityModel(sequelize)
 
 const { Country, Activity } = sequelize.models;
 
-// Aca vendrian las relaciones
 Country.belongsToMany(Activity, {through: 'country_activity', timestamps: false})
 Activity.belongsToMany(Country, {through: 'country_activity', timestamps: false})
 

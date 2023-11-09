@@ -1,4 +1,4 @@
-const { Country } = require ('../../db')
+const { Country, Activity } = require ('../../db')
 
 const getCountriesById = async (req, res) => {
     try{
@@ -6,7 +6,7 @@ const getCountriesById = async (req, res) => {
         const country = await Country.findOne({
             where:{
                 id: id
-            }})
+            }, include: Activity})
         res.status(200).json(country)
     } catch(error){
         res.status(500).json(error.message)

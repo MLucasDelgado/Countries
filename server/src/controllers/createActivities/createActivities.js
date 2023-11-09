@@ -10,7 +10,7 @@ const createActivities = async (req, res) => {
     let existingActivity = await Activity.findOne({ where: { name } });
 
     if (existingActivity) {
-      // Si la actividad ya existe, aggrego los países relacionados a la actividad existente
+      // Si la actividad ya existe, agrego los países relacionados a la actividad existente
       if (countries && countries.length > 0) {
         for (const countryId of countries) {
           const country = await Country.findByPk(countryId);
