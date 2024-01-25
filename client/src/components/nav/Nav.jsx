@@ -2,7 +2,7 @@
 import { useLocation } from "react-router-dom";
 
 // Components to render
-import Button from "../button/button";
+import Button from "../button/Button";
 import SearchBar from "../searchBar/SearchBar";
 import style from './Nav.module.css'
 
