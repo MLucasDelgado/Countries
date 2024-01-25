@@ -15,7 +15,7 @@ import axios from 'axios'
 export const getCountries = () => {
     return async(dispatch) => {
         try{
-            const response = await axios.get('http://localhost:3001/countries')
+            const response = await axios.get('https://countries-back-qrtc.onrender.com/countries')
             const data = response.data;
 
             return dispatch({
@@ -39,7 +39,7 @@ export const searchCountry = (newName) => {
                     payload: originalCountries
                 });
             } else {
-                const response = await axios.get(`http://localhost:3001/countries/name?name=${newName}`)
+                const response = await axios.get(`https://countries-back-qrtc.onrender.com/countries/name?name=${newName}`)
                 const data = response.data;
                 return dispatch({
                     type: SEARCH_COUNTRY,
@@ -56,7 +56,7 @@ export const searchCountry = (newName) => {
 export const countriesById = (id) => {
     return async(dispatch) => {
         try{
-            const response = await axios.get(`http://localhost:3001/countries/${id}`)
+            const response = await axios.get(`https://countries-back-qrtc.onrender.com/countries/${id}`)
             const data = response.data;
 
             return dispatch({
@@ -100,7 +100,7 @@ export const orderContinents = (order) => {
 export const postActivity = (input) => {
     return async(dispatch) => {
         try {
-            const endpoint = 'http://localhost:3001/activities'
+            const endpoint = 'https://countries-back-qrtc.onrender.com/activities'
             const response = await axios.post(endpoint, input)
             const data = response.data
             return dispatch({
@@ -116,7 +116,7 @@ export const postActivity = (input) => {
 export const getActivity = () => {
     return async (dispatch) => {
         try {
-            const response = await axios.get('http://localhost:3001/activities');
+            const response = await axios.get('https://countries-back-qrtc.onrender.com/activities');
             const data = response.data;
             return dispatch({
                 type: GET_ACTIVITY,
@@ -139,7 +139,7 @@ export const deleteActivity = (activityId) => {
     return async () => {
         try{
             const id = activityId
-            const response = await axios.delete(`http://localhost:3001/activities/${id}`)
+            const response = await axios.delete(`https://countries-back-qrtc.onrender.com/activities/${id}`)
         } catch(error) {
 
         }
