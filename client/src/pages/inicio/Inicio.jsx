@@ -1,4 +1,4 @@
-import Button from "../../components/button/button"
+import Button from "../../components/button/Button"
 import style from "./Inicio.module.css"
 
 const Inicio = () => {
